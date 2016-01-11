@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TerrianGenerator", "TerrianGenerator\TerrianGenerator.vcxproj", "{4444BE3C-4DC6-43BA-93EE-2107CFDA5959}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestProj", "TestProj\TestProj.vcxproj", "{31970852-13CF-4352-B10F-A4355CCDF86F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4444BE3C-4DC6-43BA-93EE-2107CFDA5959} = {4444BE3C-4DC6-43BA-93EE-2107CFDA5959}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4444BE3C-4DC6-43BA-93EE-2107CFDA5959}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4444BE3C-4DC6-43BA-93EE-2107CFDA5959}.Debug|Win32.Build.0 = Debug|Win32
+		{4444BE3C-4DC6-43BA-93EE-2107CFDA5959}.Release|Win32.ActiveCfg = Release|Win32
+		{4444BE3C-4DC6-43BA-93EE-2107CFDA5959}.Release|Win32.Build.0 = Release|Win32
+		{31970852-13CF-4352-B10F-A4355CCDF86F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{31970852-13CF-4352-B10F-A4355CCDF86F}.Debug|Win32.Build.0 = Debug|Win32
+		{31970852-13CF-4352-B10F-A4355CCDF86F}.Release|Win32.ActiveCfg = Release|Win32
+		{31970852-13CF-4352-B10F-A4355CCDF86F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
