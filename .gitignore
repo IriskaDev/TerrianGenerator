@@ -45,3 +45,4 @@ Temporary Items
 *.pdb
 *.lastbuildstate
 TerrianGenerator/Release/TerrianGenerator.tlog/unsuccessfulbuild
+*.opensdf
