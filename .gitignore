@@ -56,3 +56,4 @@ TerrianGenerator/Release/TerrianGenerator.tlog/unsuccessfulbuild
 *.ilk
 *.log
 *.log
+*.suo
