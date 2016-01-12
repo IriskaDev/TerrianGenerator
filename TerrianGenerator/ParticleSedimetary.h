@@ -27,7 +27,8 @@ namespace TerrianGenerator
 		int DisposeAField();
 		void SetStartPos(const glm::vec3 &);
 		void SetRandFunc(const rand_init_func & init, const rand_func & func);
-		glm::vec3 SearchAvaPosition(const glm::vec3 &);
+		glm::vec3 SearchAvaPositionRecu(const glm::vec3 &);
+		glm::vec3 SearchAvaPositionLoop(const glm::vec3 &);
 		void RetAltitudeField();
 	private:
 		int width, length, height;

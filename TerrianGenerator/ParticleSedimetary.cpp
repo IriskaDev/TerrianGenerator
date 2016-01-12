@@ -58,26 +58,12 @@ namespace TerrianGenerator
 
 	int ParticleSedimetary::InitAField()
 	{
-		//aField = new FloatPtr[width];
-		//for (int i = 0; i < width; ++i)
-		//{
-		//	aField[i] = new float[length];
-		//	for (int j = 0; j < length; ++j)
-		//	{
-		//		aField[i][j] = 0;
-		//	}
-		//}
 		aField = new AFieldArr(width, length, 0);
 		return 1;
 	}
 
 	int ParticleSedimetary::DisposeAField()
 	{
-		//for (int i = 0; i < width; ++i)
-		//{
-		//	delete[] aField[i];
-		//}
-		//delete[] aField;
 		delete aField;
 		return 1;
 	}
@@ -112,7 +98,7 @@ namespace TerrianGenerator
 				glm::vec3 center = glm::vec3(tmpX, tmpY, (*aField)[tmpX][tmpY]);
 				for (int j = 0; j < dropNum; ++j)
 				{
-					glm::vec3 dropPos = SearchAvaPosition(center);
+					glm::vec3 dropPos = SearchAvaPositionLoop(center);
 					int dropX = (int)dropPos.x, dropY = (int)dropPos.y;
 					(*aField)[dropX][dropY] += pHeight;
 				}
@@ -121,7 +107,7 @@ namespace TerrianGenerator
 		return 1;
 	}
 
-	glm::vec3 ParticleSedimetary::SearchAvaPosition(const glm::vec3 & pCenter)
+	glm::vec3 ParticleSedimetary::SearchAvaPositionRecu(const glm::vec3 & pCenter)
 	{
 		int srp2 = srPow2;
 		int curDirIdx = floor((*randFunc)() * 4);
@@ -164,7 +150,64 @@ namespace TerrianGenerator
 		if (bias < 0.003)
 			return center;
 		else
-			return SearchAvaPosition(center);
+			return SearchAvaPositionRecu(center);
+	}
+
+	glm::vec3 ParticleSedimetary::SearchAvaPositionLoop(const glm::vec3 & pCenter)
+	{
+		int srp2 = srPow2;
+		int curDirIdx;
+		int dirChangeMark;
+		int stepLength;
+		float bias = 1.0;
+		glm::vec3 center = glm::vec3(pCenter);
+		glm::vec2 vec2Center;
+		glm::vec2 curP;
+		glm::vec3 centerCpy;
+		float cAltitude = center.z;
+		int min_x, max_x, min_y, max_y;
+		while (bias > 0.003)
+		{
+			curDirIdx = floor((*randFunc)() * 4);
+			if (curDirIdx >= 4)
+				curDirIdx = 3;
+			dirChangeMark = 0;
+			stepLength = 0;
+			vec2Center = glm::vec2(center);
+			curP = glm::vec2(center);
+			centerCpy = center;
+			cAltitude = center.z;
+			min_x = center.x - searchR, max_x = center.x + searchR;
+			min_y = center.y - searchR, max_y = center.y + searchR;
+
+			while (stepLength <= srMul2)
+			{
+				curDirIdx = (curDirIdx + 1) % 4;
+				if (dirChangeMark % 2 == 0)
+					++stepLength;
+				for (int i = 0; i < stepLength; ++i)
+				{
+					curP = curP + glm::vec2(walkerDir4[curDirIdx].x, walkerDir4[curDirIdx].y);
+					int x = (int)curP.x, y = (int)curP.y;
+					if (x < 0 || x >= width)
+						continue;
+					if (y < 0 || y >= length)
+						continue;
+					if (glm::length(curP - vec2Center) >= searchR)
+						continue;
+					if ((*aField)[x][y] <= center.z - aThreshold)
+					{
+						center = glm::vec3(x, y, (*aField)[x][y]);
+						break;
+					}
+				}
+				++dirChangeMark;
+			}
+
+			bias = glm::length(center - centerCpy);
+		}
+
+		return center;
 	}
 
 }
