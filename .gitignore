@@ -46,3 +46,13 @@ Temporary Items
 *.lastbuildstate
 TerrianGenerator/Release/TerrianGenerator.tlog/unsuccessfulbuild
 *.opensdf
+*.lib
+*.tlog
+*.obj
+*.exe
+*.bsc
+*.sbr
+*.idb
+*.ilk
+*.log
+*.log

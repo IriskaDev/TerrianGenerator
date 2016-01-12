@@ -68,7 +68,7 @@ namespace Utils
 		Array2D(const int & pWidth, const int & pHeight, const T & pInit) : width(pWidth), height(pHeight)
 		{
 			data = new Array2DDataContainer<T>(pWidth * pHeight, pInit);
-		}
+		};
 		~Array2D()
 		{
 			delete data;
