@@ -464,6 +464,9 @@
     <ClInclude Include="Array2D.h">
       <Filter>Utils\h</Filter>
     </ClInclude>
+    <ClInclude Include="BitmapUtils.h">
+      <Filter>Utils\h</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ParticleSedimetary.cpp">

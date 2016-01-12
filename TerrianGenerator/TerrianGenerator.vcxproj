@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
+    <ClInclude Include="BitmapUtils.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\detail\func_common.hpp" />
     <ClInclude Include="glm\detail\func_exponential.hpp" />
