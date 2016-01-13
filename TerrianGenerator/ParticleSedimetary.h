@@ -29,6 +29,8 @@ namespace TerrianGenerator
 		void SetRandFunc(const rand_init_func & init, const rand_func & func);
 		glm::vec3 SearchAvaPositionRecu(const glm::vec3 &);
 		glm::vec3 SearchAvaPositionLoop(const glm::vec3 &);
+		int CreateHeightMap(char *);
+		int CreateRawHeightMap(char * fName);
 		void RetAltitudeField();
 	private:
 		int width, length, height;
@@ -41,6 +43,7 @@ namespace TerrianGenerator
 		// particle height
 		float pHeight;
 		// altitude field
+		float maxHeight;
 		typedef Utils::Array2D<float> AFieldArr;
 		AFieldArr *aField;
 		glm::vec3 startPos;

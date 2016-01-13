@@ -1,4 +1,5 @@
 #include "ParticleSedimetary.h"
+#include "BitmapUtils.h"
 
 
 namespace TerrianGenerator
@@ -30,6 +31,7 @@ namespace TerrianGenerator
 		aThreshold(pAThreshold),
 		pHeight(pPHeight)
 	{
+		maxHeight = 0;
 		startPos = glm::vec3(0.0f, 0.0f, 0.0f);
 		InitAField();
 
@@ -101,6 +103,10 @@ namespace TerrianGenerator
 					glm::vec3 dropPos = SearchAvaPositionLoop(center);
 					int dropX = (int)dropPos.x, dropY = (int)dropPos.y;
 					(*aField)[dropX][dropY] += pHeight;
+					if ((*aField)[dropX][dropY] > maxHeight)
+					{
+						maxHeight = (*aField)[dropX][dropY];
+					}
 				}
 			}
 		}
@@ -208,6 +214,29 @@ namespace TerrianGenerator
 		}
 
 		return center;
+	}
+
+	int ParticleSedimetary::CreateHeightMap(char * fName)
+	{
+		BYTE * buffer = (BYTE *)malloc(width*length);
+		for (int i = 0; i < length; ++i)
+		{
+			for (int j = 0; j < width; ++j)
+			{
+				float height = (*aField)[j][i];
+				float percent = height / maxHeight;
+				int val = floor(255 * percent);
+				*(buffer + i*width + j) = char(val);
+			}
+		}
+		int err = WriteGrayscaleBitmap(width, length, buffer, fName);
+		free(buffer);
+		return err;
+	}
+
+	int ParticleSedimetary::CreateRawHeightMap(char * fName)
+	{
+		return 0;
 	}
 
 }
