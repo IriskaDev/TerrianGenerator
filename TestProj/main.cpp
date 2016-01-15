@@ -28,8 +28,9 @@ inline void PRINT_ELEMENTS(const T& coll, const char * optcstr = "")
 int main()
 {
 	TerrianGenerator::ParticleSedimetary p = TerrianGenerator::ParticleSedimetary(257, 257, 20, 2, 0.3, 0.3);
-	p.Walker(200000);
-	p.CreateHeightMap("random.bmp");
+	p.Walker(100000);
+	p.CreateHeightMap("random11.bmp");
+	p.CreateRawHeightMap("random11.raw");
 	system("pause");
 	return 0;
 }

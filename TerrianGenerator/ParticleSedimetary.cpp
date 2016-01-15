@@ -1,5 +1,9 @@
+#include <time.h>
+
 #include "ParticleSedimetary.h"
+#include "DataAdapter.h"
 #include "BitmapUtils.h"
+#include "RawImageUtils.h"
 
 
 namespace TerrianGenerator
@@ -83,7 +87,8 @@ namespace TerrianGenerator
 
 	int ParticleSedimetary::Walker(const int & steps)
 	{
-		(*randInit)(time_t(0));
+		time_t t = time(0);
+		(*randInit)(t);
 		glm::vec3 curPos = startPos;
 		for (int i = 0; i < steps; ++i)
 		{
@@ -219,23 +224,19 @@ namespace TerrianGenerator
 	int ParticleSedimetary::CreateHeightMap(char * fName)
 	{
 		BYTE * buffer = (BYTE *)malloc(width*length);
-		for (int i = 0; i < length; ++i)
-		{
-			for (int j = 0; j < width; ++j)
-			{
-				float height = (*aField)[j][i];
-				float percent = height / maxHeight;
-				int val = floor(255 * percent);
-				*(buffer + i*width + j) = char(val);
-			}
-		}
-		int err = WriteGrayscaleBitmap(width, length, buffer, fName);
+		Utils::Arr2DToArr1DByte(aField, maxHeight, buffer, Utils::NORMAL_BYTEORDER_INVERSE_SCANLINE);
+		int err = Utils::WriteGrayscaleBitmap(width, length, buffer, fName);
 		free(buffer);
 		return err;
 	}
 
 	int ParticleSedimetary::CreateRawHeightMap(char * fName)
 	{
+		BYTE * buffer = (BYTE *)malloc(width * length);
+		//Utils::Arr2DToArr1DByte(aField, maxHeight, buffer, Utils::NORMAL_BYTEORDER_NORMAL_SCANLINE);
+		Utils::Arr2DToArr1DByte(aField, maxHeight, buffer, Utils::NORMAL_BYTEORDER_INVERSE_SCANLINE);
+		int err = Utils::WriteGrayscaleRawmap8Bit(width, length, buffer, fName);
+		free(buffer);
 		return 0;
 	}
 

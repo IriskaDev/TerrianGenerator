@@ -57,3 +57,5 @@ TerrianGenerator/Release/TerrianGenerator.tlog/unsuccessfulbuild
 *.log
 *.log
 *.suo
+*.raw
+*.bmp

@@ -467,6 +467,12 @@
     <ClInclude Include="BitmapUtils.h">
       <Filter>Utils\h</Filter>
     </ClInclude>
+    <ClInclude Include="RawImageUtils.h">
+      <Filter>Utils\h</Filter>
+    </ClInclude>
+    <ClInclude Include="DataAdapter.h">
+      <Filter>Utils\h</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ParticleSedimetary.cpp">
@@ -477,6 +483,15 @@
     </ClCompile>
     <ClCompile Include="glm\detail\glm.cpp">
       <Filter>glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="DataAdapter.cpp">
+      <Filter>Utils\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapUtils.cpp">
+      <Filter>Utils\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="RawImageUtils.cpp">
+      <Filter>Utils\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

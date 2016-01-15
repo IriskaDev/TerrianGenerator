@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="BitmapUtils.h" />
+    <ClInclude Include="DataAdapter.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\detail\func_common.hpp" />
     <ClInclude Include="glm\detail\func_exponential.hpp" />
@@ -156,11 +157,15 @@
     <ClInclude Include="glm\vec4.hpp" />
     <ClInclude Include="glm\vector_relational.hpp" />
     <ClInclude Include="ParticleSedimetary.h" />
+    <ClInclude Include="RawImageUtils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitmapUtils.cpp" />
+    <ClCompile Include="DataAdapter.cpp" />
     <ClCompile Include="glm\detail\dummy.cpp" />
     <ClCompile Include="glm\detail\glm.cpp" />
     <ClCompile Include="ParticleSedimetary.cpp" />
+    <ClCompile Include="RawImageUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="glm\detail\func_common.inl" />
